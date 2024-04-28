@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversational AI Support</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Conversational AI</h1>
+    <div id="chat_container">
+        <div class="message ai_message">Welcome to the Conversational AI! Let's practice holding a conversation.</div>
+    </div>
+    <textarea id="input_text" rows="4" placeholder="Type your message..."></textarea>
+    <button id="submit_button">Send</button>
+    <p id="response"></p>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        // Load conversation data from CSV file
+        var conversationData;
+        $.ajax({
+            type: "GET",
+            url: "conversation.csv",
+            dataType: "text",
+            success: function(data) {
+                conversationData = $.csv.toArrays(data);
+            }
+        });
+
+        // Function to speak the given text
+        function speak(text) {
+            var synth = window.speechSynthesis;
+            var utterance = new SpeechSynthesisUtterance(text);
+            synth.speak(utterance);
+        }
+
+        // Function to handle user input and chatbot response
+        function chat() {
+            var inputText = document.getElementById('input_text').value;
+            var chatContainer = document.getElementById('chat_container');
+
+            // Append user message to chat container
+            chatContainer.innerHTML += '<div><strong>You:</strong> ' + inputText + '</div>';
+            // Scroll to bottom of chat container
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+
+            // Find response from conversation data
+            var response = findResponse(inputText);
+
+            // Append chatbot response to chat container
+            chatContainer.innerHTML += '<div><strong>Chatbot:</strong> ' + response + '</div>';
+            // Scroll to bottom of chat container
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+
+            // Clear input field
+            document.getElementById('input_text').value = '';
+        }
+
+        // Function to find response from conversation data
+        function findResponse(inputText) {
+            // Iterate through conversation data to find matching input
+            for (var i = 0; i < conversationData.length; i++) {
+                var row = conversationData[i];
+                if (row[0].toLowerCase() === inputText.toLowerCase()) {
+                    return row[1];
+                }
+            }
+            // Default response if no match found
+            return "I'm sorry, I don't understand.";
+        }
+
+        // Attach click event listener to submit button
+        document.getElementById('submit_button').addEventListener('click', chat);
+
+        // Optional: Allow pressing Enter key to send message
+        document.getElementById('input_text').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                chat();
+            }
+        });
+    </script>
+</body>
+</html>

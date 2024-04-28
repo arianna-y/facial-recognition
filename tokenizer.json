@@ -1,0 +1,13 @@
+{
+    "num_words": null,
+    "filters": "!\"#$%&()*+,-./:;<=>?@[\\]^_`{|}~\t\n",
+    "lower": true,
+    "split": " ",
+    "char_level": false,
+    "oov_token": "<OOV>",
+    "document_count": 3,
+    "word_counts": "{\"how\": 1, \"are\": 1, \"you\": 1, \"what\": 2, \"doing\": 1, \"social\": 1, \"situations\": 1, \"do\": 1, \"find\": 1, \"challenging\": 1, \"or\": 1, \"want\": 1, \"to\": 1, \"work\": 1, \"on\": 1}",
+    "word_index": "{\"what\": 1, \"are\": 2, \"you\": 3, \"how\": 4, \"doing\": 5, \"social\": 6, \"situations\": 7, \"do\": 8, \"find\": 9, \"challenging\": 10, \"or\": 11, \"want\": 12, \"to\": 13, \"work\": 14, \"on\": 15}",
+    "index_word": "{\"1\": \"what\", \"2\": \"are\", \"3\": \"you\", \"4\": \"how\", \"5\": \"doing\", \"6\": \"social\", \"7\": \"situations\", \"8\": \"do\", \"9\": \"find\", \"10\": \"challenging\", \"11\": \"or\", \"12\": \"want\", \"13\": \"to\", \"14\": \"work\", \"15\": \"on\"}",
+    "word_docs": "{\"how\": 1, \"are\": 1, \"you\": 1, \"what\": 2, \"doing\": 1, \"social\": 1, \"situations\": 1, \"do\": 1, \"find\": 1, \"challenging\": 1, \"or\": 1, \"want\": 1, \"to\": 1, \"work\": 1, \"on\": 1}"
+}
